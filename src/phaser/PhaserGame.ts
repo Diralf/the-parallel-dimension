@@ -1,23 +1,24 @@
 import Phaser from 'phaser'
+import PlatformerExampleScene from "./scenes/PlatformerExampleScene";
 
-import HelloWorldScene from './scenes/HelloWorldScene'
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     parent: 'phaser-container',
     backgroundColor: '#282c34',
     scale: {
-        mode: Phaser.Scale.ScaleModes.RESIZE,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 640,
     },
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 200 },
+            gravity: { y: 500 },
+            debug: true,
         },
     },
-    scene: [HelloWorldScene],
+    scene: [PlatformerExampleScene],
 }
 
 export default new Phaser.Game(config)
