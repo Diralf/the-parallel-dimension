@@ -1,6 +1,7 @@
 import {BaseEntity} from "../entity/base-entity/base-entity";
 import {EntityComponent} from "./entity-component";
-import {ColliderMember} from "../types/types";
+import {SolidColliderMap} from "../types/types";
+import {CustomScene} from "../scenes/custom-scene";
 
 type ComponentFactory = typeof EntityComponent | (() => EntityComponent);
 
@@ -20,7 +21,7 @@ export const EntityComponentDecorator = (...componentFactories: ComponentFactory
     return class extends BaseClass {
         protected components: EntityComponent[];
 
-        constructor(scene: Phaser.Scene) {
+        constructor(scene: Phaser.Scene & CustomScene) {
             super(scene);
             this.components = componentFactories.map((componentFactory) => {
                 const component = getComponentInstance(componentFactory);
@@ -39,9 +40,9 @@ export const EntityComponentDecorator = (...componentFactories: ComponentFactory
             this.components.forEach((component) => component.create());
         }
 
-        collide(collideWithThem: ColliderMember[]) {
-            super.collide(collideWithThem);
-            this.components.forEach((component) => component.collide(collideWithThem));
+        collide(collideWithMap: SolidColliderMap) {
+            super.collide(collideWithMap);
+            this.components.forEach((component) => component.collide(collideWithMap));
         }
 
         update(time: number, delta: number) {

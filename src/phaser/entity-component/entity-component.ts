@@ -1,4 +1,4 @@
-import {ColliderMember} from "../types/types";
+import {SolidColliderMap, ColliderMember} from "../types/types";
 import {BaseEntity} from "../entity/base-entity/base-entity";
 
 export class EntityComponent {
@@ -10,6 +10,6 @@ export class EntityComponent {
 
     preload() {};
     create() {};
-    collide(collideWithThem: ColliderMember[]) {};
+    collide(collideWithMap: SolidColliderMap) {};
     update(time: number, delta: number) {};
 }

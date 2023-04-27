@@ -1,19 +1,20 @@
 import Phaser from "phaser";
-import {ColliderMember} from "../../types/types";
+import {SolidColliderMap, ColliderMember} from "../../types/types";
+import {CustomScene} from "../../scenes/custom-scene";
 
 export abstract class BaseEntity {
     protected sprite!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     protected control: Object | null = null;
 
-    constructor(protected scene: Phaser.Scene) {
+    constructor(protected scene: Phaser.Scene & CustomScene) {
     }
 
     preload() {}
 
     create() {}
 
-    collide(collideWithThem: ColliderMember[]) {
-        collideWithThem.forEach((collideWith) => {
+    collide(collideWithMap: SolidColliderMap) {
+        collideWithMap.solid.forEach((collideWith) => {
             this.scene.physics.add.collider(this.sprite, collideWith);
         });
     }
@@ -33,10 +34,6 @@ export abstract class BaseEntity {
             throw Error('Sprite is not defined');
         }
         return this.sprite;
-    }
-
-    addSprite(...args: Parameters<Phaser.Physics.Arcade.Factory['sprite']>) {
-        this.sprite = this.scene.physics.add.sprite(...args);
     }
 
     getControl() {
