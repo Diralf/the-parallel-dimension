@@ -9,25 +9,25 @@ import Phaser from "phaser";
 
 const Components = EntityComponentDecorator(
     () => new IdleEntityComponent({
-        animation: () => ({ frames: [{ key: 'player', frame: 'robo_player_0' }] }),
+        animation: () => ({ frames: [{ key: 'player', frame: 'walk0001' }] }),
     }),
     () => new WalkEntityComponent({
         animation: (sprite) => ({
             frames: sprite.anims.generateFrameNames('player', {
-                prefix: 'robo_player_',
-                start: 2,
-                end: 3,
+                prefix: 'dwalk',
+                start: 0,
+                end: 5,
             }),
         }),
     }),
     () => new JumpEntityComponent({
-        animation: () => ({ frames: [{ key: 'player', frame: 'robo_player_1' }]}),
+        animation: () => ({ frames: [{ key: 'player', frame: 'jump0001' }]}),
     }),
 );
 export class PlayerEntity extends Components(BaseEntity) {
     preload() {
         super.preload();
-        this.scene.load.atlas('player', 'assets/images/kenney_player.png', 'assets/images/kenney_player_atlas.json');
+        this.scene.load.atlas('player', 'assets/images/far_away.png', 'assets/images/far_away_atlas.json');
     }
     create() {
         this.sprite = this.scene.physics.add.sprite(50, 300, 'player');

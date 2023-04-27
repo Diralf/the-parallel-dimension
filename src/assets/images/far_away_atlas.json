@@ -1,0 +1,112 @@
+{
+    "frames": [
+        {
+            "filename": "dwalk0",
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dwalk1",
+            "frame": {
+                "x": 0,
+                "y": 70,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dwalk2",
+            "frame": {
+                "x": 0,
+                "y": 140,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dwalk3",
+            "frame": {
+                "x": 0,
+                "y": 210,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dwalk4",
+            "frame": {
+                "x": 0,
+                "y": 280,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "dwalk5",
+            "frame": {
+                "x": 0,
+                "y": 350,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "jump0001",
+            "frame": {
+                "x": 0,
+                "y": 420,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "walk0001",
+            "frame": {
+                "x": 0,
+                "y": 490,
+                "w": 70,
+                "h": 70
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Phaser3",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}
