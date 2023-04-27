@@ -1,24 +1,18 @@
 import {EntityComponent} from "../entity-component";
 import {narrowJumpableEntityControl} from "../../entity-control/types/JumpableEntityControl";
-import Phaser from "phaser";
-
-interface Settings {
-    animation: Phaser.Types.Animations.Animation;
-}
+import {AnimationSettings} from "../../types/component-settings";
 
 export class JumpEntityComponent extends EntityComponent {
-    private animation: Phaser.Types.Animations.Animation;
 
-    constructor(settings: Settings) {
+    constructor(private settings: AnimationSettings) {
         super();
-        this.animation = settings.animation;
     }
 
     create(): void {
         this.owner.getSprite().anims.create({
             key: 'jump',
             frameRate: 10,
-            ...this.animation,
+            ...this.settings.animation(this.owner.getSprite()),
         });
     }
 

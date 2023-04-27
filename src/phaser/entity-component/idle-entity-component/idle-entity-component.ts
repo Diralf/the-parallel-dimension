@@ -1,11 +1,15 @@
 import {EntityComponent} from "../entity-component";
-
+import {AnimationSettings} from "../../types/component-settings";
 export class IdleEntityComponent extends EntityComponent {
+
+    constructor(private settings: AnimationSettings) {
+        super();
+    }
     create() {
         this.owner.getSprite().anims.create({
             key: 'idle',
-            frames: [{ key: 'player', frame: 'robo_player_0' }],
             frameRate: 10,
+            ...this.settings.animation(this.owner.getSprite()),
         });
     }
 

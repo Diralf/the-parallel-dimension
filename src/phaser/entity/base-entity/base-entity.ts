@@ -8,19 +8,9 @@ export abstract class BaseEntity {
     constructor(protected scene: Phaser.Scene) {
     }
 
-    preload() {
-        this.scene.load.atlas(
-            'player',
-            'assets/images/kenney_player.png',
-            'assets/images/kenney_player_atlas.json',
-        );
-    }
+    preload() {}
 
-    create() {
-        this.sprite = this.scene.physics.add.sprite(50, 300, 'player');
-        this.sprite.setBounce(0.1);
-        this.sprite.setCollideWorldBounds(true);
-    }
+    create() {}
 
     collide(collideWithThem: ColliderMember[]) {
         collideWithThem.forEach((collideWith) => {
@@ -28,16 +18,25 @@ export abstract class BaseEntity {
         });
     }
 
-    update(time: number, delta: number) {
-
-    }
+    update(time: number, delta: number) {}
 
     getColliderMember(): ColliderMember {
         return this.getSprite();
     }
 
+    getScene() {
+        return this.scene;
+    }
+
     getSprite() {
+        if (!this.sprite) {
+            throw Error('Sprite is not defined');
+        }
         return this.sprite;
+    }
+
+    addSprite(...args: Parameters<Phaser.Physics.Arcade.Factory['sprite']>) {
+        this.sprite = this.scene.physics.add.sprite(...args);
     }
 
     getControl() {

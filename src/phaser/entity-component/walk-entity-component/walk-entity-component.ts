@@ -1,18 +1,19 @@
 import {EntityComponent} from "../entity-component";
 import {narrowWalkableEntityControl} from "../../entity-control/types/WalkableEntityControl";
+import {AnimationSettings} from "../../types/component-settings";
 
 export class WalkEntityComponent extends EntityComponent {
+
+    constructor(private settings: AnimationSettings) {
+        super();
+    }
 
     create() {
         this.owner.getSprite().anims.create({
             key: 'walk',
-            frames: this.owner.getSprite().anims.generateFrameNames('player', {
-                prefix: 'robo_player_',
-                start: 2,
-                end: 3,
-            }),
             frameRate: 10,
-            repeat: -1
+            repeat: -1,
+            ...this.settings.animation(this.owner.getSprite()),
         });
     }
 
