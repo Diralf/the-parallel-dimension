@@ -32,7 +32,8 @@ export default class PlatformerExampleScene extends Phaser.Scene {
 
         platforms.setCollisionByExclusion([-1], true);
 
-        this.player.create([platforms]);
+        this.player.create();
+        this.player.collide([platforms]);
 
         this.spikes = this.physics.add.group({
             allowGravity: false,
