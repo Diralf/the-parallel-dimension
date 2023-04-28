@@ -19,6 +19,7 @@ export default class PlatformerExampleScene extends Phaser.Scene implements Cust
         this.spikes.preload();
         this.player.preload();
         this.load.image('tiles', 'assets/tilesets/platformPack_tilesheet.png');
+        this.load.image('forest_tiles', 'assets/tilesets/forest_tilesheet.png');
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/level1.json');
     }
 
@@ -28,7 +29,8 @@ export default class PlatformerExampleScene extends Phaser.Scene implements Cust
 
         this.map = this.make.tilemap({ key: 'map' });
         const tileset = this.map.addTilesetImage('kenney_simple_platformer', 'tiles');
-        const platforms = this.map.createLayer('Platforms', tileset, 0, 200);
+        const forestTileset = this.map.addTilesetImage('forest', 'forest_tiles');
+        const platforms = this.map.createLayer('Platforms', [tileset, forestTileset], 0, 200);
         platforms.setCollisionByExclusion([-1], true);
 
         this.player.create();
