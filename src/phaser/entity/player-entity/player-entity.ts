@@ -8,10 +8,10 @@ import {EnemyColliderMap, SolidColliderMap} from "../../types/types";
 import Phaser from "phaser";
 
 const Components = EntityComponentDecorator(
-    () => new IdleEntityComponent({
+    IdleEntityComponent.factory({
         animation: () => ({ frames: [{ key: 'player', frame: 'walk0001' }] }),
     }),
-    () => new WalkEntityComponent({
+    WalkEntityComponent.factory({
         animation: (sprite) => ({
             frames: sprite.anims.generateFrameNames('player', {
                 prefix: 'dwalk',
@@ -20,9 +20,9 @@ const Components = EntityComponentDecorator(
             }),
         }),
     }),
-    () => new JumpEntityComponent({
+    JumpEntityComponent.factory({
         animation: () => ({ frames: [{ key: 'player', frame: 'jump0001' }]}),
-    }),
+    })
 );
 export class PlayerEntity extends Components(BaseEntity) {
     preload() {

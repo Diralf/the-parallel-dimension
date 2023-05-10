@@ -3,19 +3,7 @@ import {EntityComponent} from "./entity-component";
 import {SolidColliderMap} from "../types/types";
 import {CustomScene} from "../scenes/custom-scene";
 
-type ComponentFactory = typeof EntityComponent | (() => EntityComponent);
-
-const getComponentInstance = (factory: ComponentFactory) => {
-    const ComponentClass = factory as typeof EntityComponent;
-    const componentFactory = factory as () => EntityComponent;
-    try {
-        return new ComponentClass();
-    } catch {
-        return componentFactory();
-    }
-}
-
-export const EntityComponentDecorator = (...componentFactories: ComponentFactory[]) => (
+export const EntityComponentDecorator = (...componentFactories: (() => EntityComponent)[]) => (
     BaseClass: typeof BaseEntity
 ) => {
     return class extends BaseClass {
@@ -24,7 +12,7 @@ export const EntityComponentDecorator = (...componentFactories: ComponentFactory
         constructor(scene: Phaser.Scene & CustomScene) {
             super(scene);
             this.components = componentFactories.map((componentFactory) => {
-                const component = getComponentInstance(componentFactory);
+                const component = componentFactory();
                 component.init(this);
                 return component;
             });
